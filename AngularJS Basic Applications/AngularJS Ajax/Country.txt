@@ -1,0 +1,21 @@
+[
+	{ 
+	"Country" : "India",
+	"Capital" : "Delhi"
+	}
+	{
+	"Country": "Bangladesh",
+	"Capital": "Dhaka"
+	},
+	
+	{
+	"Country": "Srilanka",
+	"Capital": "Colombo"
+	},
+	
+	{
+	"Country": "USA",
+	"Capital": "Washington"
+	}
+	
+]

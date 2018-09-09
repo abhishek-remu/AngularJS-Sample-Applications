@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,td{
+		border:1px solid black;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module("mainApp",[]);
+		app.controller("companyController" ,function($scope){
+		
+		$scope.reset=function(){
+		$scope.companyName="Enterprise Application DNA";
+		$scope.location="Bangalore";
+		$scope.email="abhishek@gmail.com";
+		
+		}
+		$scope.reset();
+		});
+    </script>
+</head>
+<body>
+<div  ng-app="mainApp"  ng-controller="companyController">
+
+	<form name="companyForm" novalidate>
+	<table border="0">
+		<tr>
+		<td> Enter Company Name</td>
+		<td>
+			<input name="companyname" type="text" ng-model="companyName" required>
+			<span style="color:red" ng-show="companyForm.companyname.$dirty &&  companyForm.companyname.$invalid " >
+				<span ng-show="companyForm.companyname.$error.required">Company Name is required</span>
+			</span>
+		</td>
+		</tr>
+		
+		<tr>
+		<td> Enter Location</td>
+		<td>
+			<input name="location" type="text" ng-model="location" required>
+			<span style="color:red" ng-show="companyForm.location.$dirty &&  companyForm.location.$invalid" >
+				<span ng-show="companyForm.location.$error.required">Location is required</span>
+			</span>
+		</td>
+		</tr>
+		
+		
+		<tr>
+		<td>Email</td>
+		<td>
+			<input name="email" type="email" ng-model="email" required>
+			<span style="color:red" ng-show="companyForm.email.$dirty &&  companyForm.email.$invalid" >
+				<span ng-show="companyForm.email.$error.required">Email is required</span>
+				<span ng-show="companyForm.email.$error.email">Invalid email address</span>
+
+			</span>
+		</td>
+		</tr>
+		
+		<tr>
+		<td>
+			<button ng-click="reset()">Reset</button>
+		</td>
+		<td>
+			<button ng-disabled="companyForm.companyname.$dirty &&  companyForm.companyname.$invalid
+								|| companyForm.location.$dirty &&  companyForm.location.$invalid 
+								|| companyForm.email.$dirty &&  companyForm.email.$invalid" ng-click="submit()">
+								Submit
+								</button>
+		</td>
+		</tr>
+	</table>
+	</form>
+	
+</div>
+</body>
+</html 

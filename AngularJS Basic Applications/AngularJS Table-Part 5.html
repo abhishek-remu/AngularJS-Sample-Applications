@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,td{
+		border:1px solid black;
+		border-collapse:collapse;
+		padding: 5px;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module("ngApp",[]);
+		app.controller("TestController" ,function($scope){
+		$scope.FirstName="Remo";
+		$scope.LastName="Roy";
+		$scope.Features=[{FeatureName:'Height',FeatureValue:'6ft'},{FeatureName:'Weight',FeatureValue:'80 kg'},
+		{FeatureName:'Complexion',FeatureValue:'Fair'}]
+		});
+		
+    </script>
+</head>
+<body ng-app="ngApp"  	ng-controller="TestController">
+
+	<table border="0">
+	<tr>
+		<td>Name</td>		
+		<td>{{FirstName+" "+LastName}}	</td>
+	</tr>
+	<tr>
+		<td>Features</td>
+	<td>
+	<table>
+	<tr ng-repeat="feature in Features">
+		<td>{{feature.FeatureName}}</td>
+		<td>{{feature.FeatureValue}}</td>
+
+	</tr>
+	</table >
+	
+	</td>
+	</tr>
+	</table>
+</body>
+</html 

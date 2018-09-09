@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<head>  
+    <script src="angular.min.js"></script>
+    <script>
+        angular.module("ngApp",[])
+    </script>
+</head>
+<body ng-app="ngApp" ng-init="CountryCapital_List=[['India','Delhi'],['Bangladesh','Dhaka'],['Srilanka','Colombo'],['USA','Washington ']]">
+    <table border="1px solid black" >
+	
+	<tr ng-repeat="Country in CountryCapital_List">
+		<td ng-repeat="CountryCapital in Country">
+		{{CountryCapital}}
+		</td>
+	</tr>
+	
+    </table>
+	<br>
+	<input type="text" ng-model="Name" />
+	<br/>
+	{{Name}}
+	</br>
+</body>
+</html 

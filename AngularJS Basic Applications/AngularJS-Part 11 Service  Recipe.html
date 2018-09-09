@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,th,td{
+		border:1px solid grey;
+		border-collapse:collapse;
+		padding: 5px;
+	}
+	
+	table tr:nth-child(odd){
+	background-color:#f2f2f2;
+	}
+	
+	table tr:nth-child(even){
+	background-color:#ffffff;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+	
+</head>
+<body>
+	<h2>AngularJS Single Page Application</h2>
+	
+	<!--Declare Application-->
+		<div  ng-app="myapp">
+			
+			<!--Parent Controller Declaration-->
+			<div ng-controller="StudentController">
+			
+			<table>
+				<tr>
+					<td>
+						{{StudentName}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{FormattedStudentId}}
+					</td>
+				</tr>
+			
+			</table>
+			
+			</div>
+			</div>
+		
+
+    <script>
+		//Class Constructor
+		function formattedStudentID(studentId){
+		this.studentId='00'+studentId;
+		}
+	
+		//Define Application Module
+        var app = angular.module("myapp",[]);
+		
+		//Value Recipe
+		app.value('studentId','614587');
+		
+		//Factory Recipe
+		app.factory('formattedStudentIdFactory',['studentId',function getStudentId(studentId){
+		return formattedStudentID(studentId) ;
+		}]);
+		
+		//Service Recipe
+		app.service('formattedStudentIdService',['studentId',formattedStudentID]);
+		
+		//Define Car  controller and model 
+		app.controller("StudentController" ,['$scope','formattedStudentIdService',function($scope,formattedStudentIdService){
+			$scope.StudentName ="John Wade";
+			
+			$scope.FormattedStudentId =formattedStudentIdService.studentId;
+
+		
+		}]);
+		
+		
+		
+	
+	
+    </script>
+	
+
+</body>
+</html 

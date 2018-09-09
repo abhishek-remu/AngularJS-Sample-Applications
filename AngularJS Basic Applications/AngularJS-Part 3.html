@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,td{
+		border:1px solid black;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module("ngApp",[]);
+		
+    </script>
+</head>
+<body ng-app="ngApp"  	ng-init="Employees =[{FirstName:'Steven',LastName:'WADE',Salary:9000},{FirstName:'Abhishek', LastName:'Roy',Salary:8000},
+{FirstName:'Remo', LastName:'Roy',Salary:10000}]">
+
+	<input type="text" ng-model="filterValue" /> </br></br>
+	<table>
+		<tr ng-repeat="employee in Employees | filter:filterValue | orderBy:'Salary'">
+			<td>{{employee.FirstName | uppercase}}</td>
+			<td>{{employee.LastName | lowercase}}</td>
+			<td>{{employee.Salary | currency }}</td>
+
+		</tr>
+	</table>
+</body>
+</html 

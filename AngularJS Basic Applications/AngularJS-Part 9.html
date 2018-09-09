@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,th,td{
+		border:1px solid grey;
+		border-collapse:collapse;
+		padding: 5px;
+	}
+	
+	table tr:nth-child(odd){
+	background-color:#f2f2f2;
+	}
+	
+	table tr:nth-child(even){
+	background-color:#ffffff;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+	
+</head>
+<body>
+	<h2>AngularJS Single Page Application</h2>
+	
+	<!--Declare Application-->
+		<div  ng-app="Car">
+			
+			<!--Parent Controller Declaration-->
+			<div ng-controller="CarController">
+			<b>Parent Scope</b></br>
+			<table>
+				<tr>
+					<td>
+						{{ObjectType}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{CarMake}}
+					</td>
+				</tr>
+			
+			</table>
+			</br></br>
+			
+			
+			<!--Child Controller Declaration-->
+			<div ng-controller="AudiController">
+			<b>Child Scope</b></br>
+			<table>
+				<tr>
+					<td>
+						{{ObjectType}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{CarMake}}
+					</td>
+				</tr>
+			
+			</table>
+			</br></br>
+			</div>
+			</div>
+		</div>	
+
+    <script>
+		//Define Application Module
+        var app = angular.module("Car",[]);
+		
+		//Define car  controller and model 
+		app.controller("CarController" ,function($scope){
+			$scope.ObjectType="Car";
+			$scope.CarMake="Several Companies like  Ford,Toyota,Hyundai,Mercedes,Audi,Bentley,Ferrai make cars";
+		
+		});
+		
+		//Define Audi  controller and model 
+		app.controller("AudiController" ,function($scope){
+			$scope.ObjectType="Sedan Car";
+			//$scope.CarMake="Audi";
+		
+		});
+		
+		
+		
+	
+	
+    </script>
+	
+
+</body>
+</html 

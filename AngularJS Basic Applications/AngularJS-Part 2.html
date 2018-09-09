@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<head>  
+    <script src="angular.min.js"></script>
+    <script>
+        var app = angular.module("ngApp",[]);
+		app.controller("ngController" ,function($scope){
+		$scope.FirstName="Remo";
+		$scope.LastName="Roy";
+		$scope.ChangeName=function(){
+			$scope.FirstName="Abhishek";
+			$scope.LastName="Roy";
+		}
+		});
+		
+    </script>
+</head>
+<body ng-app="ngApp"  	ng-controller="ngController">
+	<input type="text" ng-model="FirstName" placeholder="First Name"/>
+   	<input type="text" ng-model="LastName" placeholder="Last Name"/>
+	<input type="button" value="Change Name" ng-click="ChangeName()"/>
+
+</br>
+Double  braces Expression: {{FirstName +" "+LastName}}
+</br>
+Ng-Bind Expression:<span ng-bind="FirstName+' '+LastName" >
+</body>
+</html 

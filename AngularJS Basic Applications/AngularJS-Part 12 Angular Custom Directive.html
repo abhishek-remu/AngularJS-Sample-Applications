@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,th,td{
+		border:1px solid grey;
+		border-collapse:collapse;
+		padding: 5px;
+	}
+	
+	table tr:nth-child(odd){
+	background-color:#f2f2f2;
+	}
+	
+	table tr:nth-child(even){
+	background-color:#ffffff;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+	
+</head>
+<body>
+	<h2>AngularJS Single Page Application</h2>
+	
+	<!--Declare Application-->
+		<div  ng-app="myapp">
+			
+			<!--Parent Controller Declaration-->
+			<div ng-controller="StudentController">
+			
+			<student name="John"></student></br>
+			<student name="Fred"></student>
+
+			
+			</div>
+			</div>
+		
+
+    <script>
+		
+		
+		//Define Application Module
+        var app = angular.module("myapp",[]);
+		
+		app.directive("student",function(){
+		var directive={};
+		
+		//define directive type
+		directive.restrict="E";
+		
+		//Template replaces the complete element with its text
+		directive.template="<table> <tr> <td>Student</td></tr> <tr> <td>{{student.name}}</td></tr> <tr><td>{{student.name}}</td></tr></table>";
+		
+		///Scope is used to distinguish each student element based on criteria
+		directive.scope={student:'=name'};
+		
+		//compile gets called once during HTML page load for application initialisation
+		
+		directive.compile=function(element, attributes){
+		
+			//linkFunction is linked with each element  through  scope to get  the element specific data
+			var linkFunction= function($scope,element,attributes){
+			element.html("<table> <tr> <td>Student</td></tr> <tr> <td>"+$scope.student.name+"</td></tr> <tr><td>"+  $scope.student.age+"</td></tr></table>");
+			}
+			return linkFunction;
+		}
+		return directive;
+		})
+				
+		app.controller("StudentController" ,function($scope){
+			$scope.John ={};
+			$scope.John.name ="John Wade";
+			$scope.John.age =28;
+
+			$scope.Fred ={};
+			$scope.Fred.name ="Fred Dwayne";
+			$scope.Fred.age =24;
+		
+		});
+	
+    </script>
+	
+
+</body>
+</html 

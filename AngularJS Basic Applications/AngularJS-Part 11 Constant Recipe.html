@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,th,td{
+		border:1px solid grey;
+		border-collapse:collapse;
+		padding: 5px;
+	}
+	
+	table tr:nth-child(odd){
+	background-color:#f2f2f2;
+	}
+	
+	table tr:nth-child(even){
+	background-color:#ffffff;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+	
+</head>
+<body>
+	<h2>AngularJS Single Page Application</h2>
+	
+	<!--Declare Application-->
+		<div  ng-app="myapp">
+			
+			<!--Parent Controller Declaration-->
+			<div ng-controller="StudentController">
+			
+			<table>
+				<tr>
+					<td>
+						{{StudentName}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{FormattedStudentId}}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						{{CollegeName}}
+					</td>
+				</tr>
+			
+			</table>
+			
+			</div>
+			</div>
+		
+
+    <script>
+		//Class Constructor
+		function formattedStudentID(studentId){
+		this.studentId='00'+studentId;
+		}
+		
+		//Define Application Module
+        var app = angular.module("myapp",[]);
+		
+		app.config(['formatStudentIdProvider','CollegeName',function(formatStudentIdProvider,CollegeName){
+			formatStudentIdProvider.IsEngineeringStudent(true);
+			formatStudentIdProvider.CollegeNameFunc(CollegeName);
+		
+		}]);
+		
+		//Value Recipe
+		app.value('studentId','614587');
+		
+		//Constant Recipe
+		app.constant('CollegeName','College of Engineering');
+		
+		
+		//Provider Recipe
+		app.provider('formatStudentId',function provideStudentId(){
+			var isEngineeringStudents=false;
+			var collegeName;
+			
+			this.IsEngineeringStudent= function (value){
+			 isEngineeringStudents=value;
+			 
+			 };
+			 
+			 this.CollegeNameFunc= function (value){
+			 collegeName=value;
+			 
+			 };
+			 this.$get=['studentId', function getStudentId(studentId){
+			 return new formattedStudentID(studentId);
+			 }];
+			 
+			 
+		
+		});
+		
+	
+		//Define Car  controller and model 
+		app.controller("StudentController" ,['$scope','formatStudentId','CollegeName',function($scope,formatStudentId,CollegeName){
+			$scope.StudentName ="John Wade";
+			
+			$scope.FormattedStudentId =formatStudentId.studentId;
+			$scope.CollegeName =CollegeName;
+
+		
+		}]);
+		
+		
+		
+	
+	
+    </script>
+	
+
+</body>
+</html 

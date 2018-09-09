@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<head>  
+	<style>
+	table,td{
+		border:1px solid black;
+	}
+	</style>
+    <script src="angular.min.js"></script>
+  <script>
+        var app = angular.module("mainApp",[]);
+		app.controller('countryController' ,function($scope,$http){
+		var url="Country.txt";
+		
+		$http.get(url).then(function (response){
+			$scope.countries=response.data;
+		});
+		
+		});
+    </script>
+</head>
+<body>
+<h2>Angular JS and AJAX</h2>
+<div  ng-app="mainApp"  ng-controller="countryController">
+
+	
+	<table>
+		<tr>
+			<th>Country Name</th>
+			<th>Capital Name</th>
+
+		</tr>
+		
+		<tr ng-repeat="country in countries">
+			<td>{{country.Country}}</td>
+			<td>{{country.Capital}}</td>
+		
+		</tr>
+		
+		
+		
+	</table>
+	
+	
+</div>
+</body>
+</html 
